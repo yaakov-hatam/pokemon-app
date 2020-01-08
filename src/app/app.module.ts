@@ -5,16 +5,18 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { PokemonListComponent } from './pokemon/pokemon-list/pokemon-list.component';
+import { PokemonComponent } from './pokemon/pokemon/pokemon.component';
 
 const appRoutes: Routes = [
-    { path: 'pokemons', component: PokemonListComponent},
-    { path: 'pokemon/:name', component: PokemonListComponent}
+    {path: '', component: PokemonListComponent},
+    {path: 'pokemon/:name', component: PokemonComponent},
 ];
 
 @NgModule({
     declarations: [
         AppComponent,
-        PokemonListComponent
+        PokemonListComponent,
+        PokemonComponent
     ],
     imports: [
         BrowserModule,

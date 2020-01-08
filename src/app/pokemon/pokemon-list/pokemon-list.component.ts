@@ -1,23 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { PokemonService } from 'src/app/services/pokemon.service';
-import { PokemonResultModel } from 'src/app/models/pokemon-result.model';
+import { PokemonListModel } from 'src/app/models/pokemon-list.model';
 
 @Component({
     templateUrl: './pokemon-list.component.html',
     styleUrls: ['./pokemon-list.component.css']
 })
 export class PokemonListComponent implements OnInit {
-    pokemons: PokemonResultModel;
+    pokemonListResult: PokemonListModel;
+
     constructor(private pokemonService: PokemonService) { }
 
     ngOnInit() {
         this.pokemonService.get().subscribe(res => {
-            this.pokemons = res;
+            this.pokemonListResult = res;
         })
-    }
-
-    showPokemon(name: string) {
-
     }
 
 }

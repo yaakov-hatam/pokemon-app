@@ -1,5 +1,5 @@
-<ul>
-    <li *ngFor='let pokemon of pokemons.results'>
-        <a [routerLink]='["/pokemon", pokemon.name]'>{{pokemon.name}}</a>
+<ul *ngIf="pokemonListResult">
+    <li *ngFor='let pokemon of pokemonListResult.results'>
+        <a [routerLink]="['/pokemon', pokemon.name]">{{pokemon.name}}</a>
     </li>
 </ul>

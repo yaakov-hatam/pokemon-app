@@ -1,6 +1,11 @@
-# QuestionnaireApp
+# Pokemon App
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.21.
+
+## Api in use
+https://pokeapi.co/api/v2/pokemon
+
+https://pokeapi.co/api/v2/pokemon/ditto/
 
 ## Development server
 
