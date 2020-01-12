@@ -10,6 +10,8 @@ import { PokemonModel } from 'src/app/models/pokemon.model';
 })
 export class PokemonComponent implements OnInit {
     pokemon: PokemonModel;
+    d = new Date;
+
     constructor(private activatedRoute: ActivatedRoute, private pokemonService: PokemonService) { }
 
     ngOnInit() {
@@ -17,8 +19,9 @@ export class PokemonComponent implements OnInit {
             const name = res.name;
             this.pokemonService.getPokemon(name).subscribe(pokemonRes => {
                 this.pokemon = pokemonRes;
+            }, (err) => {
+                console.log(err);
             })
-
         })
     }
 

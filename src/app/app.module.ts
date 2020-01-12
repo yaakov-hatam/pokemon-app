@@ -1,11 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { PokemonListComponent } from './pokemon/pokemon-list/pokemon-list.component';
 import { PokemonComponent } from './pokemon/pokemon/pokemon.component';
+import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { CapitalLetterPipe } from './capital-letter.pipe';
 
 const appRoutes: Routes = [
     {path: '', component: PokemonListComponent},
@@ -16,7 +18,8 @@ const appRoutes: Routes = [
     declarations: [
         AppComponent,
         PokemonListComponent,
-        PokemonComponent
+        PokemonComponent,
+        CapitalLetterPipe
     ],
     imports: [
         BrowserModule,
@@ -25,7 +28,9 @@ const appRoutes: Routes = [
         ),
         HttpClientModule
     ],
-    providers: [],
+    providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

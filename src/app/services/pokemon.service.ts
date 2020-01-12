@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { PokemonListModel } from '../models/pokemon-list.model';
 import { PokemonModel } from '../models/pokemon.model';
 
@@ -9,7 +10,6 @@ import { PokemonModel } from '../models/pokemon.model';
 })
 export class PokemonService {
     private readonly BASE_URL = 'https://pokeapi.co/api/v2'
-
     constructor(private httpClient: HttpClient) { }
 
     get(): Observable<PokemonListModel> {
@@ -19,6 +19,9 @@ export class PokemonService {
 
     getPokemon(name: string): Observable<PokemonModel> {
         const url = `${this.BASE_URL}/pokemon/${name}`;
-        return this.httpClient.get<PokemonModel>(url);
+        return this.httpClient.get<PokemonModel>(url).pipe(map(res => {
+            res.name = res.name.toUpperCase();
+            return res;
+        }));
     }
 }
